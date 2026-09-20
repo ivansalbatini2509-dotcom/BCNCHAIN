@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+</head>
+<body>
+<title>Bytecoin Reactivación</title>
+<meta name="description" content="Proyecto comunitario para reactivar la red Bytecoin (BCN)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --bg:#0c0910;
+    --surface:#160f16;
+    --surface-2:#20141f;
+    --border:#2c1e2a;
+    --border-2:#3d2a39;
+    --text:#f3e9ef;
+    --muted:#b294a6;
+    --accent:#ec3b83;
+    --accent-dim:#7a1f45;
+    --accent-2:#ff86bd;
+    --warn:#f0a53d;
+    --font-d:"Sora",system-ui,sans-serif;
+    --font-b:"IBM Plex Sans",system-ui,sans-serif;
+    --font-m:"IBM Plex Mono",ui-monospace,monospace;
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;background:var(--bg);color:var(--text);
+    font-family:var(--font-b);line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(900px 500px at 80% -10%, rgba(236,59,131,.16), transparent 60%),radial-gradient(700px 400px at 0% 0%, rgba(255,134,189,.07), transparent 55%);
+    background-attachment:fixed;
+  }
+  a{color:inherit;text-decoration:none}
+  h1,h2,h3{font-family:var(--font-d);text-wrap:balance;margin:0;line-height:1.12}
+  .wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding-inline:20px}
+  .eyebrow{font-family:var(--font-m);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+
+  /* logo mark */
+  .mark{width:26px;height:26px;flex:none;border-radius:50%;background:var(--accent);display:inline-flex;align-items:center;justify-content:center;
+    font-family:var(--font-d);font-weight:800;color:#fff;font-size:15px;line-height:1;box-shadow:0 0 16px rgba(236,59,131,.55)}
+  .mark.sm{width:22px;height:22px;font-size:13px}
+
+  /* header */
+  header.site{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;
+    background:rgba(12,9,16,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+  .nav{display:flex;align-items:center;gap:20px;height:60px}
+  .brand{display:flex;align-items:center;gap:9px;font-family:var(--font-d);font-weight:700;letter-spacing:.02em}
+  .nav .links{display:flex;gap:22px;margin-left:auto;font-size:14px;color:var(--muted)}
+  .nav .links a:hover{color:var(--text)}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-b);font-weight:600;font-size:14px;
+    padding:10px 16px;border-radius:10px;border:1px solid transparent;cursor:pointer;transition:.15s;white-space:nowrap}
+  .btn-p{background:var(--accent);color:#fff;box-shadow:0 6px 20px -8px rgba(236,59,131,.75)}
+  .btn-p:hover{background:#f2559a;transform:translateY(-1px)}
+  .btn-g{background:transparent;border-color:var(--border-2);color:var(--text)}
+  .btn-g:hover{border-color:var(--accent);color:var(--accent)}
+  .nav .btn{margin-left:4px}
+  @media(max-width:720px){.nav .links{display:none}.nav .btn-header{margin-left:auto}}
+
+  /* hero */
+  .hero{padding-block:64px 40px}
+  .hero h1{font-size:clamp(38px,7vw,68px);font-weight:800;letter-spacing:-.02em}
+  .hero h1 .g{background:linear-gradient(120deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p.lead{font-size:clamp(16px,2.4vw,20px);color:var(--muted);max-width:56ch;margin:22px 0 0}
+  .hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+  .hero .btn{padding:13px 22px;font-size:15px}
+  .strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:48px;
+    background:var(--border);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+  .strip div{background:var(--surface);padding:18px 16px}
+  .strip .k{font-family:var(--font-m);font-size:22px;font-weight:500;color:var(--accent)}
+  .strip .l{font-size:12.5px;color:var(--muted);margin-top:4px}
+  @media(max-width:640px){.strip{grid-template-columns:repeat(2,1fr)}}
+
+  /* terminal */
+  .term{margin-top:34px;border:1px solid var(--border);border-radius:14px;overflow:hidden;background:#0a0710}
+  .term .bar{display:flex;align-items:center;gap:7px;padding:11px 14px;background:var(--surface);border-bottom:1px solid var(--border)}
+  .term .bar i{width:11px;height:11px;border-radius:50%;display:inline-block}
+  .term .bar .t{margin-left:8px;font-family:var(--font-m);font-size:12px;color:var(--muted)}
+  .term pre{margin:0;padding:16px;font-family:var(--font-m);font-size:12.5px;line-height:1.7;color:#d8c7d2;overflow-x:auto}
+  .term .c-a{color:var(--accent)}.term .c-c{color:var(--accent-2)}.term .c-m{color:var(--muted)}
+
+  /* sections */
+  section{padding-block:56px;border-top:1px solid var(--border)}
+  .s-head{max-width:60ch}
+  .s-head h2{font-size:clamp(26px,4vw,40px);font-weight:700;margin-top:12px;letter-spacing:-.01em}
+  .s-head p{color:var(--muted);margin:14px 0 0;font-size:16px}
+
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px}
+  @media(max-width:800px){.grid3{grid-template-columns:1fr}}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px}
+  .card h3{font-size:18px;font-weight:600;margin-bottom:8px}
+  .card .ic{font-family:var(--font-m);color:var(--accent);font-size:13px;letter-spacing:.1em;text-transform:uppercase}
+  .card p{color:var(--muted);font-size:14.5px;margin:6px 0 0}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:34px}
+  @media(max-width:800px){.grid2{grid-template-columns:1fr}}
+  .mcard{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;display:flex;flex-direction:column}
+  .mcard .tag{display:inline-block;font-family:var(--font-m);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent-dim);padding:3px 9px;border-radius:20px;align-self:flex-start}
+  .mcard h3{font-size:20px;margin:14px 0 6px}
+  .mcard>p{color:var(--muted);font-size:14.5px;margin:0 0 16px}
+  .cmd{position:relative;background:#0a0710;border:1px solid var(--border);border-radius:10px;padding:14px 46px 14px 14px;font-family:var(--font-m);font-size:12.5px;color:#e2d3dd;overflow-x:auto;margin-top:auto}
+  .cmd .cp{position:absolute;top:8px;right:8px;background:var(--surface-2);border:1px solid var(--border-2);color:var(--muted);
+    font-family:var(--font-b);font-size:11px;padding:5px 9px;border-radius:7px;cursor:pointer;transition:.15s}
+  .cmd .cp:hover{color:var(--accent);border-color:var(--accent)}
+  .note{font-size:13px;color:var(--warn);margin-top:14px;display:flex;gap:8px;align-items:flex-start}
+  .steps{counter-reset:s;margin:30px 0 0;padding:0;list-style:none;display:grid;gap:12px}
+  .steps li{counter-increment:s;position:relative;padding:16px 18px 16px 56px;background:var(--surface);border:1px solid var(--border);border-radius:12px;font-size:14.5px;color:var(--muted)}
+  .steps li::before{content:counter(s);position:absolute;left:16px;top:14px;width:26px;height:26px;border-radius:8px;
+    background:var(--surface-2);border:1px solid var(--border-2);color:var(--accent);font-family:var(--font-m);font-size:13px;display:flex;align-items:center;justify-content:center}
+  .steps li b{color:var(--text);font-weight:600}
+  .steps code{font-family:var(--font-m);font-size:13px;background:#0a0710;border:1px solid var(--border);padding:2px 6px;border-radius:5px;color:var(--accent-2)}
+
+  /* community */
+  .links-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:34px}
+  @media(max-width:640px){.links-grid{grid-template-columns:1fr}}
+  .lnk{display:flex;align-items:center;gap:16px;padding:20px;background:var(--surface);border:1px solid var(--border);border-radius:14px;transition:.15s}
+  .lnk:hover{border-color:var(--accent);transform:translateY(-2px);background:var(--surface-2)}
+  .lnk .em{width:44px;height:44px;flex:none;border-radius:11px;background:var(--surface-2);border:1px solid var(--border-2);display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-weight:700;color:var(--accent);font-size:16px}
+  .lnk .tt{font-family:var(--font-d);font-weight:600;font-size:16px}
+  .lnk .ds{font-size:13px;color:var(--muted);margin-top:1px}
+  .lnk .ar{margin-left:auto;color:var(--muted);font-family:var(--font-m)}
+
+  footer{border-top:1px solid var(--border);padding-block:34px;margin-top:20px}
+  footer .fx{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center;color:var(--muted);font-size:13px}
+  .disc{font-size:12.5px;color:#8a7080;max-width:70ch;margin-top:16px;line-height:1.6}
+  .badge-live{display:inline-flex;align-items:center;gap:7px;font-family:var(--font-m);font-size:12px;color:var(--accent);
+    border:1px solid var(--accent-dim);border-radius:20px;padding:5px 12px;background:rgba(236,59,131,.08)}
+  .badge-live .pulse{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(236,59,131,.7);animation:pl 2s infinite}
+  @keyframes pl{0%{box-shadow:0 0 0 0 rgba(236,59,131,.6)}70%{box-shadow:0 0 0 8px rgba(236,59,131,0)}100%{box-shadow:0 0 0 0 rgba(236,59,131,0)}}
+  @media(prefers-reduced-motion:reduce){.badge-live .pulse{animation:none}}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+</style>
+
+<header class="site">
+  <div class="wrap nav">
+    <a class="brand" href="#top"><span class="mark sm">B</span>BYTECOIN<span style="color:var(--muted);font-weight:500">·BCN</span></a>
+    <nav class="links">
+      <a href="#proyecto">Proyecto</a>
+      <a href="#minar">Minar</a>
+      <a href="#nodos">Nodos</a>
+      <a href="#comunidad">Comunidad</a>
+    </nav>
+    <a class="btn btn-p btn-header" href="https://t.me/bytecoinbcnn" target="_blank" rel="noopener">Unirse a Telegram</a>
+  </div>
+</header>
+
+<a id="top"></a>
+<div class="wrap">
+  <section class="hero" style="border-top:none">
+    <span class="badge-live"><span class="pulse"></span>Red activa · produciendo bloques</span>
+    <h1 style="margin-top:20px">La red que <span class="g">nunca murió</span>.<br>Bytecoin vuelve a la vida.</h1>
+    <p class="lead">Proyecto comunitario e independiente para reactivar la red de Bytecoin (BCN), una de las criptomonedas pioneras en privacidad. Nodos nuevos, minería abierta y desarrollo, paso a paso.</p>
+    <div class="cta">
+      <a class="btn btn-p" href="#minar">Empezar a minar</a>
+      <a class="btn btn-g" href="https://t.me/bytecoinbcnn" target="_blank" rel="noopener">Sumate a la comunidad →</a>
+    </div>
+
+    <div class="strip">
+      <div><div class="k">2012</div><div class="l">En línea desde</div></div>
+      <div><div class="k">~120s</div><div class="l">Por bloque</div></div>
+      <div><div class="k">CryptoNight</div><div class="l">Algoritmo PoW</div></div>
+      <div><div class="k">3.6M+</div><div class="l">Bloques en la cadena</div></div>
+    </div>
+
+    <div class="term">
+      <div class="bar"><i style="background:#ff5f56"></i><i style="background:#ffbd2e"></i><i style="background:#27c93f"></i><span class="t">bytecoind — node</span></div>
+      <pre><span class="c-m">$</span> ./bytecoind --seed-node-address=89.116.24.205:8080
+<span class="c-c">I</span> P2P listening on 0.0.0.0:8080
+<span class="c-c">I</span> Node RPC listening on 127.0.0.1:8081
+<span class="c-a">I</span> BlockChainState height=3621250 <span class="c-m">redo_block #tx=4</span>
+<span class="c-a">✓</span> Sincronizado con la red · <span class="c-a">nodo operativo</span></pre>
+    </div>
+  </section>
+
+  <section id="proyecto">
+    <div class="s-head">
+      <span class="eyebrow">// Qué es Bytecoin</span>
+      <h2>Privacidad real, código abierto, sin dueños.</h2>
+      <p>Bytecoin fue la primera criptomoneda en implementar la tecnología CryptoNote: transacciones anónimas mediante firmas de anillo y direcciones no vinculables. La cadena sigue viva y produciendo bloques — nuestro objetivo es devolverle infraestructura, actividad y comunidad.</p>
+    </div>
+    <div class="grid3">
+      <div class="card"><div class="ic">Privacidad</div><h3>CryptoNote</h3><p>Firmas de anillo y direcciones ocultas: las transacciones no revelan emisor, receptor ni monto.</p></div>
+      <div class="card"><div class="ic">Consenso</div><h3>Proof of Work</h3><p>Algoritmo CryptoNight, minable con CPU. Cada minero que se suma fortalece y descentraliza la red.</p></div>
+      <div class="card"><div class="ic">Abierto</div><h3>100% Open Source</h3><p>Código bajo licencia libre. Cualquiera puede correr un nodo, auditar o contribuir al proyecto.</p></div>
+    </div>
+  </section>
+
+  <section id="minar">
+    <div class="s-head">
+      <span class="eyebrow">// Guía de minería</span>
+      <h2>Empezá a minar en minutos.</h2>
+      <p>No necesitás equipos caros: alcanza con el procesador de tu PC. Elegí una de las dos formas de minar Bytecoin.</p>
+    </div>
+    <div class="grid2">
+      <div class="mcard">
+        <span class="tag">Opción 1 · Pool</span>
+        <h3>Minar en un pool</h3>
+        <p>La forma más simple. Descargá <b>XMRig</b> (versión win64 para PC Intel/AMD), abrí una terminal en su carpeta y pegá el comando con tu dirección BCN.</p>
+        <div class="cmd" data-cmd>xmrig -a cryptonight -o bytecoin.network:3333 -u TU_DIRECCION_BCN -p rig-cpu<button class="cp" type="button">Copiar</button></div>
+        <div class="note">⚠ Descargá la versión que coincida con tu PC (win64, no arm64), o Windows la rechaza.</div>
+      </div>
+      <div class="mcard">
+        <span class="tag">Opción 2 · Solo</span>
+        <h3>Minar contra tu propio nodo</h3>
+        <p>Con el nodo <b>bytecoind</b> sincronizado, usá <b>minerd</b> (viene con Bytecoin) apuntando a tu nodo local. Ideal para el equipo y máxima descentralización.</p>
+        <div class="cmd" data-cmd>./minerd --address=TU_DIRECCION_BCN --daemon-address=127.0.0.1:8081 --threads=4<button class="cp" type="button">Copiar</button></div>
+        <div class="note">⚠ El nodo debe estar 100% sincronizado antes de minar en solo.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="nodos">
+    <div class="s-head">
+      <span class="eyebrow">// Nodos y red</span>
+      <h2>Corré un nodo. Sostené la red.</h2>
+      <p>Cada nodo alcanzable hace a Bytecoin más fuerte y descentralizada. Ponerlo en marcha es rápido.</p>
+    </div>
+    <ol class="steps">
+      <li><b>Descargá el software.</b> Bajá la wallet + nodo oficial de Bytecoin para tu sistema (Windows, Linux o macOS).</li>
+      <li><b>Dale permiso y arrancá el nodo.</b> En Linux: <code>chmod +x bytecoind</code> y luego <code>./bytecoind --seed-node-address=89.116.24.205:8080</code></li>
+      <li><b>Esperá la sincronización.</b> El nodo baja la cadena completa (~3,6M de bloques). Puede tardar varias horas la primera vez.</li>
+      <li><b>Verificá en el explorer.</b> Comparás la altura de tu nodo con la red para confirmar que estás en la cadena correcta.</li>
+    </ol>
+  </section>
+
+  <section id="comunidad">
+    <div class="s-head">
+      <span class="eyebrow">// Comunidad</span>
+      <h2>Sumate al renacer de Bytecoin.</h2>
+      <p>Esto es un proyecto comunitario. Cuantos más seamos, más imparable se vuelve la red. Elegí por dónde entrar.</p>
+    </div>
+    <div class="links-grid">
+      <a class="lnk" href="https://t.me/bytecoinbcnn" target="_blank" rel="noopener">
+        <span class="em">TG</span><span><span class="tt">Telegram</span><span class="ds">Canal oficial del proyecto · novedades y soporte</span></span><span class="ar">↗</span>
+      </a>
+      <a class="lnk" href="https://x.com/bcnchain" target="_blank" rel="noopener">
+        <span class="em">X</span><span><span class="tt">X / Twitter</span><span class="ds">@bcnchain · seguí los avances de la reactivación</span></span><span class="ar">↗</span>
+      </a>
+      <a class="lnk" href="https://explorer.bytecoin.world/" target="_blank" rel="noopener">
+        <span class="em" style="color:var(--accent)"><span class="mark">B</span></span><span><span class="tt">Explorer</span><span class="ds">Estado de la red, bloques y transacciones en vivo</span></span><span class="ar">↗</span>
+      </a>
+      <a class="lnk" href="https://github.com/bcndev/bytecoin/releases" target="_blank" rel="noopener">
+        <span class="em">⤓</span><span><span class="tt">Descargar wallet</span><span class="ds">Wallet + nodo para Windows, Linux y macOS</span></span><span class="ar">↗</span>
+      </a>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="fx">
+      <a class="brand" href="#top"><span class="mark sm">B</span>BYTECOIN·BCN</a>
+      <span>Reactivación comunitaria · 2026</span>
+    </div>
+    <p class="disc">Iniciativa comunitaria e independiente. No es el equipo original de Bytecoin ni un canal oficial de la moneda. No prometemos precios, rendimientos ni ganancias: este proyecto existe para devolverle actividad e infraestructura a una red abierta. Minar y participar es responsabilidad de cada usuario.</p>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('[data-cmd]').forEach(function(box){
+    var btn=box.querySelector('.cp');
+    if(!btn)return;
+    btn.addEventListener('click',function(){
+      var txt=box.textContent.replace(/Copiar$/,'').trim();
+      var done=function(){btn.textContent='¡Copiado!';setTimeout(function(){btn.textContent='Copiar';},1400);};
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(done);}
+      else{done();}
+    });
+  });
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click',function(e){
+      var id=a.getAttribute('href');if(id.length<2)return;
+      var el=document.querySelector(id);if(!el)return;
+      e.preventDefault();el.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+  });
+</script>
+
+</body>
+</html>
